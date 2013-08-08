@@ -1,0 +1,50 @@
+﻿@model DC.Pessoa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Pessoa</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DataDeNascimento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataDeNascimento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Celular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Celular)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TelefoneResidencial)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TelefoneResidencial)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
