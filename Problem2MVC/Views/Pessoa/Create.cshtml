@@ -1,16 +1,16 @@
 ﻿@model DC.Pessoa
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Adicionar";
 }
 
-<h2>Create</h2>
+<h2>Adicionar Novo</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Pessoa</legend>
+        <legend>Adicionar novos dados</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Nome)
@@ -53,13 +53,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Adicionar" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {

@@ -75,6 +75,7 @@ h2 {
 
 h3 {
     font-size: 1.2em;
+    color:red;
 }
 
 h4 {
@@ -532,6 +533,7 @@ table {
     border-spacing: 0;
     margin-top: 0.75em;
     border: 0 none;
+    width:100%;
 }
 
 th {

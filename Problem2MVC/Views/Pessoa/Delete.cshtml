@@ -1,14 +1,14 @@
 ﻿@model DC.Pessoa
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Excluir";
 }
 
-<h2>Delete</h2>
+<h2>Excluir</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Você tem certeza que deseja excluir esses Dados?</h3>
 <fieldset>
-    <legend>Pessoa</legend>
+    <legend>Excluir Dados</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nome)
@@ -47,7 +47,7 @@
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Excluir" /> |
+        @Html.ActionLink("Voltar", "Index")
     </p>
 }

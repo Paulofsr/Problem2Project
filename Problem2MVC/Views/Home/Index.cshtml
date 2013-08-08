@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Carregar arquivo";
 }
 @using Microsoft.Web.Helpers;
 @{
@@ -25,27 +25,28 @@
                 <h1>@ViewBag.Title.</h1>
             </hgroup>
             <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+                Informe um aquivo .txt para salvar os dados.
+                O aquivo deve estar com a seguinte formatação em uma linha para cada Pessoa cadastrada:<br/>
+                -Nome: ocupar 20 caractéres;<br/>
+                -Email: ocupar 20 caractéres;<br/>
+                -Data de Nascimento: ocupar 8 caractéres no formato aaaMMdd (a-ano; M-Mês; d-dia);<br/>
+                -Celular: ocupar 15 caractéres;<br/>
+                -Telefone Residencial: ocupar 15 caractéres.<br/>
             </p>
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
 
-    <h1>FileUpload - Single-File Example</h1>
+    <h1>Informe o arquivo:</h1>
     @FileUpload.GetHtml(
         initialNumberOfFiles:1,
         allowMoreFilesToBeAdded:false,
         includeFormTag:true,
         uploadText:"Salvar")
     @if (IsPost) {
-        <span>Informe o arquivo que deseja atualizar</span><br/>
+        <h3>Informe o arquivo que deseja atualizar</h3><br/>
     }
-                <h1>@Html.Raw(ViewBag.Message)</h1>
+                <h3>@Html.Raw(ViewBag.Message)</h3>
 
 
 

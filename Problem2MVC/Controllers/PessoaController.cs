@@ -21,14 +21,22 @@ namespace Problem2MVC.Controllers
 
         public ActionResult Index()
         {
+            TempData["Mensagem"] = null;
             if (LerPasta())
+            {
+                if (TempData["Mensagem"] != null)
+                    ViewBag.Message = TempData["Mensagem"].ToString();
                 return View(db.Pessoas.ToList());
+            } 
             return RedirectToAction("Index", "Home", ViewBag);
         }
 
+        #region Controlador de leitura do arquivo
         private bool LerPasta()
         {
             string[] lista = System.IO.Directory.GetFiles(Request.PhysicalApplicationPath + "\\App_Data\\UploadedFiles\\");
+            if (lista.Length == 0)
+                return true;
             string erroMessage = string.Empty;
             int countSucess = 0;
             int countErro = 0;
@@ -36,7 +44,7 @@ namespace Problem2MVC.Controllers
             {
                 erroMessage += LerArquivo(lista[i], ref countSucess, ref countErro);
             }
-            TempData["Mensagem"] = string.Format("{0} Dados inserido(s). {1} Dados com erro.<br/>", countSucess, countErro);
+            TempData["Mensagem"] = string.Format("{0} Dados inserido(s). {1} Dados com erro.\n", countSucess, countErro);
             if (erroMessage != string.Empty)
             {
                 TempData["Mensagem"] += erroMessage;
@@ -83,7 +91,7 @@ namespace Problem2MVC.Controllers
                 pessoa.Email = linha.Substring(20, 20);
                 if (!System.Text.RegularExpressions.Regex.IsMatch(pessoa.Email, ".+\\@.+\\..+"))
                 {
-                    erroMessage += string.Format("- Email inválido. ({0}) [Linha: {1}]<br/>", linha.Substring(20, 20), linhaIndex);
+                    erroMessage += string.Format("- Email inválido. ({0}) [Linha: {1}]\n", linha.Substring(20, 20), linhaIndex);
                     throw new Exception("Email inválido.");
                 }
                 try
@@ -91,13 +99,13 @@ namespace Problem2MVC.Controllers
                     pessoa.DataDeNascimento = DateTime.ParseExact(linha.Substring(40, 8), "yyyyMMdd", CultureInfo.InvariantCulture);
                     if (pessoa.DataDeNascimento.CompareTo(DateTime.Today) == 1)
                     {
-                        erroMessage += string.Format("- Data de nascimento errada. ({0}) [Linha: {1}]<br/>", linha.Substring(40, 8), linhaIndex);
+                        erroMessage += string.Format("- Data de nascimento errada. ({0}) [Linha: {1}]\n", linha.Substring(40, 8), linhaIndex);
                         throw new Exception("Data de nascimento errada.");
                     }
                 }
                 catch
                 {
-                    erroMessage += string.Format("- Data inválida. ({0}) [Linha: {1}]<br/>", linha.Substring(40, 8), linhaIndex);
+                    erroMessage += string.Format("- Data inválida. ({0}) [Linha: {1}]\n", linha.Substring(40, 8), linhaIndex);
                     throw new Exception("Data inválida.");
                 }
                 pessoa.Celular = linha.Substring(48, 15);
@@ -115,6 +123,7 @@ namespace Problem2MVC.Controllers
                 countSucess++;
             }
         }
+        #endregion
 
         //
         // GET: /Pessoa/Details/5
